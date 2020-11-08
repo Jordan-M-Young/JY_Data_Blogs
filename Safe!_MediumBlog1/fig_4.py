@@ -12,12 +12,6 @@ from scipy.stats import linregress as linreg
 import numpy as np
 
 
-#Opens player hitting statistics
-lf_hitting = pd.read_csv('C:/Users/jmyou/Desktop/bb_data_project/Left_Hitter_basic_hitting_Stats.csv')
-rf_hitting = pd.read_csv('C:/Users/jmyou/Desktop/bb_data_project/Right_Hitter_basic_hitting_Stats.csv')
-s_hitting = pd.read_csv('C:/Users/jmyou/Desktop/bb_data_project/Switch_Hitter_basic_hitting_Stats.csv')
-
-
 #Opens player running statistics
 lf_running = pd.read_csv('C:/Users/jmyou/Desktop/bb_data_project/Left_Hitter_run_Stats.csv')
 rf_running = pd.read_csv('C:/Users/jmyou/Desktop/bb_data_project/Right_Hitter_run_Stats.csv')
@@ -34,8 +28,6 @@ l_reg = linreg(lf_running.loc[:,'sprint_speed'],lf_running.loc[:,'hp_to_1b'])
 r_reg = linreg(rf_running.loc[:,'sprint_speed'],rf_running.loc[:,'hp_to_1b'])
 s_reg = linreg(s_running.loc[:,'sprint_speed'],s_running.loc[:,'hp_to_1b'])
 
-
-
 #Best fit lines of each group of hitters
 x = np.array([i for i in range(20,35)])
 yr = r_reg[0]*x + r_reg[1]
@@ -50,25 +42,10 @@ vir_b = (46/255, 111/255, 142/255)
 vir_g = (40/255, 175/255, 126/255)
 vir_y =  (188/255, 223/255, 37/255)
 
-# l = lf_hitting.loc[:,'b_hit_ground'] / lf_hitting.loc[:,'b_out_ground']
-# l_std = round(l.std(),3)
-# l_mean = round(l.mean(),3)
-
-# r = rf_hitting.loc[:,'b_hit_ground'] / rf_hitting.loc[:,'b_out_ground']
-# r_std = round(r.std(),3)
-# r_mean = round(r.mean(),3)
-
-# s = s_hitting.loc[:,'b_hit_ground'] / s_hitting.loc[:,'b_out_ground']
-# s_std = round(s.std(),3)
-# s_mean = round(s.mean(),3)
-
-
-
 # Plots best fit lines
 plt.plot(x,yl,color=vir_v,zorder=3)
 plt.plot(x,yr,color=vir_g,zorder=3)
 plt.plot(x,ys,color=vir_y,zorder=3)
-
 
 #Plots data from Baseball Savant
 plt.scatter(lf_running.loc[:,'sprint_speed'],
